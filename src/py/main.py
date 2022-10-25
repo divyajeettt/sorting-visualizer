@@ -29,19 +29,36 @@ SAMPLES: list[int] = [
     pygame.Rect(WIDTH*i, 0, WIDTH, i+1) for i in range(NUM)
 ]
 
+C_BINS: list[str] = [
+    r"./bin/dll/bubbleSort.dll",
+    r"./bin/dll/doubleSelectionSort.dll",
+    r"./bin/dll/heapSort.dll",
+    r"./bin/dll/insertionSort.dll",
+    r"./bin/dll/mergeSort.dll",
+    r"./bin/dll/quickSort.dll",
+    r"./bin/dll/reverseSelectionSort.dll",
+    r"./bin/dll/selectionSort.dll",
+]
+
+SORTING_FUNCTIONS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
+
 pygame.display.set_caption("Sorting Visualizer")
 
 
-def randomize_heights() -> None:
+def randomize_heights() -> list[int]:
     heights = list(range(1, NUM+1))
     random.shuffle(heights)
+
     for i in range(NUM):
         SAMPLES[i].height = heights[i]
+
+    return heights
 
 
 def draw_samples() -> None:
     for i in range(NUM):
-        # SAMPLES[i].y = SIDE - SAMPLES[i].height    # this will make the rectangles go from bottom to top
+        # this will make the rectangles go from bottom to top
+        # SAMPLES[i].y = SIDE - SAMPLES[i].height
         pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
 
 
@@ -72,6 +89,8 @@ def sort_samples(algorithm: int) -> None:
 
 
 def main() -> None:
+    heights = [sample.height for sample in SAMPLES]
+
     clock = pygame.time.Clock()
     RUN = True
 
@@ -84,7 +103,7 @@ def main() -> None:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    randomize_heights()
+                    heights = randomize_heights()
 
                 if event.key == pygame.K_RETURN:
                     sort_samples(ALGORITHM)
