@@ -21,6 +21,8 @@ int partition(int arr[], int start, int end)
     return (i + 1);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+
 void quickSort(int arr[], int start, int end)
 {
     if (start >= end)
