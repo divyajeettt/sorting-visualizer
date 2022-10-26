@@ -35,6 +35,7 @@ SAMPLES: list[int] = [
 
 C_BINS: list[str] = [
     r"./bin/dll/bubbleSort.dll",
+    r"./bin/dll/cocktailShakerSort.dll",
     r"./bin/dll/doubleSelectionSort.dll",
     r"./bin/dll/heapSort.dll",
     r"./bin/dll/insertionSort.dll",

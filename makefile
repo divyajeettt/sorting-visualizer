@@ -6,6 +6,7 @@ create:
 
 compile:
 	gcc -o ./bin/o/bubbleSort.o -c ./src/c/bubbleSort.c
+	gcc -o ./bin/o/cocktailShakerSort.o -c ./src/c/cocktailShakerSort.c
 	gcc -o ./bin/o/doubleSelectionSort.o -c ./src/c/doubleSelectionSort.c
 	gcc -o ./bin/o/heapSort.o -c ./src/c/heapSort.c
 	gcc -o ./bin/o/insertionSort.o -c ./src/c/insertionSort.c
@@ -17,6 +18,7 @@ compile:
 
 link:
 	gcc -o ./bin/dll/bubbleSort.dll -s --shared ./bin/o/bubbleSort.o
+	gcc -o ./bin/dll/cocktailShakerSort.dll -s --shared ./bin/o/cocktailShakerSort.o
 	gcc -o ./bin/dll/doubleSelectionSort.dll -s --shared ./bin/o/doubleSelectionSort.o
 	gcc -o ./bin/dll/heapSort.dll -s --shared ./bin/o/heapSort.o
 	gcc -o ./bin/dll/insertionSort.dll -s --shared ./bin/o/insertionSort.o
