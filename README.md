@@ -35,8 +35,9 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
 The following features are provided in the visualizer:
 
 - Ability to shuffle the samples any number of times before sorting
-- (Currently) 8 different popular sorting algorithms:
+- (Currently) 10 different popular sorting algorithms:
   - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
+  - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
   - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
   - [Reverse Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Selection Sort in reverse
   - [Double Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Bidirectional Selection Sort
@@ -74,7 +75,6 @@ python3 ./src/py/main.py
 
 - Ability to select ascending/descending order for sorting
 - Add more interesting algorithms (non-exhasutively):
-  - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
   - [Comb Sort](https://en.wikipedia.org/wiki/Comb_sort)
   - [Smooth Sort](https://en.wikipedia.org/wiki/Smoothsort)
 - Ability to dynamically change the number of samples
