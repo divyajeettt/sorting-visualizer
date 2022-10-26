@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -57,13 +56,6 @@ int *sort(int *arr, int n)
     static long idx = 0;
 
     quickSort(arr, 0, n-1, swaps, &idx);
-    printf("idx = %ld \n", idx);
-
-    printf("arr = ");
-    for (int i=0; i < n; i++)
-    {
-        printf("%d ", arr[i]);
-    }
 
     return swaps;
 }
