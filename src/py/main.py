@@ -16,7 +16,7 @@ pygame.font.init()
 screens.main()
 
 
-NUM: int = 300               # number of rectangle samples
+NUM: int = 625               # number of rectangle samples
 SIDE: float = 625.0          # side of the main window
 WIDTH: float = SIDE / NUM    # width of each rectangle
 
@@ -59,24 +59,34 @@ def randomize_heights() -> list[int]:
 
 
 def draw_samples() -> None:
+    WINDOW.fill((0, 0, 0))
     for i in range(NUM):
-        # this will make the rectangles go from bottom to top
-        # SAMPLES[i].y = SIDE - SAMPLES[i].height
         pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
 
 
 def draw_sorting(swaps: list[list[int]]) -> None:
     for (i, j) in swaps:
-        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
-        WINDOW.fill((0, 0, 0))
+        try:
+            SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+        except IndexError:
+            print(i, j)
+            continue
+
         draw_samples()
-        # pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
-        # pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
+
+        copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
+        copy_i.width = copy_j.width = 5
+        pygame.draw.rect(WINDOW, (255, 0, 0), copy_i)
+        pygame.draw.rect(WINDOW, (0, 0, 255), copy_j)
         pygame.display.update()
 
 
 def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
     c_array = (ctypes.c_int * NUM)(*heights)
+
+    if algorithm == 5:
+        del SORTING_LIBS[5]
+        SORTING_LIBS.insert(5, ctypes.CDLL(r"./bin/dll/quickSort.dll"))
 
     SORTING_LIBS[algorithm].sort.argtypes = (ctypes.POINTER(ctypes.c_int * NUM), ctypes.c_int)
     SORTING_LIBS[algorithm].sort.restype = ctypes.POINTER(ctypes.c_int * 2*NUM**2)
@@ -85,7 +95,7 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
 
     swaps_list: list[list[int]] = []
     for i in swaps_ptr.contents:
-        if i[0] == i[1] == -1:
+        if i[0] == i[1] == 0:
             break
         swaps_list.append([i[0], i[1]])
 
@@ -108,18 +118,21 @@ def main() -> None:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
+                    print("pressed space -> randomizing")
                     heights = randomize_heights()
                     samples_sorted = False
+                    print("randomized")
 
                 if event.key == pygame.K_RETURN:
                     if samples_sorted:
                         continue
-
+                    print("starting to sort")
                     swaps = sort_samples(ALGORITHM, heights)
+                    print("drawing sort")
                     draw_sorting(swaps)
                     samples_sorted = True
+                    print("samples are now sorted")
 
-        WINDOW.fill((0, 0, 0))
         draw_samples()
         pygame.display.update()
 
