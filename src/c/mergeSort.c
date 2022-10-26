@@ -85,6 +85,9 @@ int *sort(int *arr, int n)
     int *build = (int *) calloc(2*n*n, sizeof(int));
     static long idx = 0;
 
+    build[idx++] = -1;
+    build[idx++] = -1;
+
     mergeSort(arr, 0, n-1, build, &idx);
     return build;
 }
