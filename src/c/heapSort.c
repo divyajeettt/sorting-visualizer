@@ -39,7 +39,7 @@ void extractMax(int arr[], int n)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void heapSort(int arr[], int n)
+void sort(int arr[], int n)
 {
     // heapify the array
     for (int i=n-1; i >=0; i--)

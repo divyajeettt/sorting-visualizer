@@ -1,4 +1,4 @@
-void reverseSelectionSort(int arr[], int n) {
+void sort(int arr[], int n) {
     int maxIndex, max, temp;
 
     for (int i=n-1; i > -1; i--)

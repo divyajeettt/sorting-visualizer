@@ -44,7 +44,7 @@ void merge(int arr[], int low, int mid, int high)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void mergeSort(int arr[], int start, int end)
+void sort(int arr[], int start, int end)
 {
     if (start >= end)
     {
@@ -53,8 +53,8 @@ void mergeSort(int arr[], int start, int end)
     else
     {
         int mid = (start + end) / 2;
-        mergeSort(arr, start, mid);
-        mergeSort(arr, mid+1, end);
+        sort(arr, start, mid);
+        sort(arr, mid+1, end);
         merge(arr, start, mid, end);
     }
 }

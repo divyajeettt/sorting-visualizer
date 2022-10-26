@@ -1,4 +1,4 @@
-void doubleSelectionSort(int arr[], int n) {
+void sort(int arr[], int n) {
     int minIndex, maxIndex, min, max, temp, i1, i2;
 
     for (int i=0; i < n/2; i++)

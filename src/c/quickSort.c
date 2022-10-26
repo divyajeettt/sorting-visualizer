@@ -23,7 +23,7 @@ int partition(int arr[], int start, int end)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void quickSort(int arr[], int start, int end)
+void sort(int arr[], int start, int end)
 {
     if (start >= end)
     {
@@ -33,7 +33,7 @@ void quickSort(int arr[], int start, int end)
     {
         // arr[partitionIndex] is now at the right place
         int partitionIndex = partition(arr, start, end);
-        quickSort(arr, start, partitionIndex-1);
-        quickSort(arr, partitionIndex+1, end);
+        sort(arr, start, partitionIndex-1);
+        sort(arr, partitionIndex+1, end);
     }
 }

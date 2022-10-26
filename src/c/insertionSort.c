@@ -1,4 +1,4 @@
-void insertionSort(int arr[], int n) {
+void sort(int arr[], int n) {
     int j, key;
 
     for (int i=1; i < n; i++)
