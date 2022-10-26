@@ -15,6 +15,9 @@ int *sort(int *arr, int n) {
 
         for (int j=0; j < i; j++)
         {
+            swaps[idx++] = j;
+            swaps[idx++] = j;
+
             if (arr[j] > max)
             {
                 max = arr[j];

@@ -17,6 +17,9 @@ int *sort(int *arr, int n) {
 
         for (int k=i; k <= j; k++)
         {
+            swaps[idx++] = k;
+            swaps[idx++] = k;
+
             if (arr[k] < min)
             {
                 min = arr[k];
