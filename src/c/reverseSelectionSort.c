@@ -1,5 +1,12 @@
-void sort(int arr[], int n) {
+#include <stdlib.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+int *sort(int *arr, int n) {
     int maxIndex, max, temp;
+
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    long idx = 0;
 
     for (int i=n-1; i > -1; i--)
     {
@@ -17,9 +24,14 @@ void sort(int arr[], int n) {
 
         if (maxIndex != i)
         {
+            swaps[idx++] = i;
+            swaps[idx++] = maxIndex;
+
             temp = arr[i];
             arr[i] = arr[maxIndex];
             arr[maxIndex] = temp;
         }
     }
+
+    return swaps;
 }

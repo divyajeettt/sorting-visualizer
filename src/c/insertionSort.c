@@ -1,15 +1,24 @@
-void sort(int arr[], int n) {
-    int j, key;
+#include <stdlib.h>
 
-    for (int i=1; i < n; i++)
+///////////////////////////////////////////////////////////////////////////////
+
+int *sort(int *arr, int n) {
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    long idx = 0;
+
+    for (int i = 1; i < n; i++)
     {
-        key = arr[i];
-        j = i - 1;
-        while (j >= 0 && arr[j] > key)
+        int j = i;
+        while (j > 0 && arr[j] < arr[j - 1])
         {
-            arr[j + 1] = arr[j];
-            j--;
+            swaps[idx++] = j;
+            swaps[idx++] = j - 1;
+
+            int temp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[--j] = temp;
         }
-        arr[j + 1] = key;
     }
+
+    return swaps;
 }

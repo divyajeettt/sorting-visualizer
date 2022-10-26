@@ -1,22 +1,10 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-
-void printSwaps(int *swaps, long count)
-{
-    for (long i=0; i < count; i++)
-    {
-        printf("%d ", swaps[i]);
-    }
-}
-
+///////////////////////////////////////////////////////////////////////////////
 
 int *sort(int *arr, int n)
 {
-    int *swaps = (int *) malloc(2*n*n * sizeof(int));
-    memset(swaps, -1, 2*n*n * sizeof(int));
-
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
     long idx = 0;
 
     for (int i=0; i < n; i++)
@@ -34,7 +22,6 @@ int *sort(int *arr, int n)
             }
         }
     }
-    // printSwaps(swaps, idx);
-    // printf("\n\n");
+
     return swaps;
 }

@@ -1,39 +1,53 @@
-void sort(int arr[], int n) {
-    int minIndex, maxIndex, min, max, temp, i1, i2;
+#include <stdlib.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+int *sort(int *arr, int n) {
+    int minIndex, maxIndex, min, max, temp, l;
+
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    long idx = 0;
 
     for (int i=0; i < n/2; i++)
     {
-        i1 = i;
-        i2 = n - i - 1;
+        int j = n - i - 1;
 
-        min = arr[i1]; max = arr[i2];
-        minIndex = i1; maxIndex = i2;
+        min = arr[i]; max = arr[i];
+        minIndex = i; maxIndex = i;
 
-        for (int j=i1; j < i2; j++)
+        for (int k=i; k <= j; k++)
         {
-            if (arr[j] < min)
+            if (arr[k] < min)
             {
-                min = arr[j];
-                minIndex = j;
+                min = arr[k];
+                minIndex = k;
             }
-            else if (arr[j] > max)
+            else if (arr[k] > max)
             {
-                max = arr[j];
-                maxIndex = j;
+                max = arr[k];
+                maxIndex = k;
             }
         }
 
-        if (minIndex != i1)
+        if (minIndex != i)
         {
-            temp = arr[i1];
-            arr[i1] = arr[minIndex];
+            swaps[idx++] = i;
+            swaps[idx++] = minIndex;
+
+            temp = arr[i];
+            arr[i] = arr[minIndex];
             arr[minIndex] = temp;
         }
-        if (maxIndex != i2)
-        {
-            temp = arr[i2];
-            arr[i2] = arr[maxIndex];
-            arr[maxIndex] = temp;
-        }
+
+        l = ((arr[minIndex] == max) ? minIndex : maxIndex);
+
+        swaps[idx++] = j;
+        swaps[idx++] = l;
+
+        temp = arr[j];
+        arr[j] = arr[l];
+        arr[l] = temp;
     }
+
+    return swaps;
 }

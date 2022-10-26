@@ -1,7 +1,14 @@
-void sort(int arr[], int n) {
+#include <stdlib.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+int *sort(int *arr, int n) {
     int minIndex, min, temp;
 
-    for (int i=0; i < n/2; i++)
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    long idx = 0;
+
+    for (int i=0; i < n; i++)
     {
         min = arr[i];
         minIndex = i;
@@ -17,9 +24,14 @@ void sort(int arr[], int n) {
 
         if (minIndex != i)
         {
+            swaps[idx++] = i;
+            swaps[idx++] = minIndex;
+
             temp = arr[i];
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
         }
     }
+
+    return swaps;
 }

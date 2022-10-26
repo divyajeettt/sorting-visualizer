@@ -1,4 +1,8 @@
-void merge(int arr[], int low, int mid, int high)
+#include <stdlib.h>
+
+///////////////////////////////////////////////////////////////////////////////
+
+void merge(int *arr, int low, int mid, int high, int *swaps, long *idx)
 {
     int i, j, k;
     int n1 = mid - low + 1;
@@ -44,7 +48,7 @@ void merge(int arr[], int low, int mid, int high)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void sort(int arr[], int start, int end)
+void mergeSort(int *arr, int start, int end, int *swaps, long *idx)
 {
     if (start >= end)
     {
@@ -53,8 +57,19 @@ void sort(int arr[], int start, int end)
     else
     {
         int mid = (start + end) / 2;
-        sort(arr, start, mid);
-        sort(arr, mid+1, end);
-        merge(arr, start, mid, end);
+        mergeSort(arr, start, mid, swaps, idx);
+        mergeSort(arr, mid+1, end, swaps, idx);
+        merge(arr, start, mid, end, swaps, idx);
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+int *sort(int *arr, int n)
+{
+    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    static long idx = 0;
+
+    mergeSort(arr, 0, n-1, swaps, &idx);
+    return swaps;
 }
