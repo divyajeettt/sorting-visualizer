@@ -40,6 +40,7 @@ def main() -> None:
         "Quick Sort": 5,
         "Reverse Selection Sort": 6,
         "Selection Sort": 7,
+        "Tim Sort": 8
     }
 
     for (text, value) in values.items():
