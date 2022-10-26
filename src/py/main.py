@@ -42,6 +42,7 @@ C_BINS: list[str] = [
     r"./bin/dll/quickSort.dll",
     r"./bin/dll/reverseSelectionSort.dll",
     r"./bin/dll/selectionSort.dll",
+    r"./bin/dll/timSort.dll",
 ]
 
 SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
@@ -66,28 +67,31 @@ def draw_samples() -> None:
 
 
 def draw_sorting(swaps: list[list[int]]) -> None:
-    if ALGORITHM == 4:
-        for (i, height) in swaps:
-            SAMPLES[i].height = height
+    merging = False
+
+    for (i, j) in swaps:
+        if i == j == -1:
+            merging = True
+
+        if not merging:
+            SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+
+            draw_samples()
+            copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
+            copy_i.width = copy_j.width = 2.5
+
+            pygame.draw.rect(WINDOW, (255, 0, 0), copy_i)
+            pygame.draw.rect(WINDOW, (0, 0, 255), copy_j)
+
+        else:
+            SAMPLES[i].height = j
 
             draw_samples()
             copy_i = SAMPLES[i].copy()
             copy_i.width = 2.5
 
             pygame.draw.rect(WINDOW, (255, 0, 0) if i%2 else (0, 0, 255), copy_i)
-            pygame.display.update()
 
-        return
-
-    for (i, j) in swaps:
-        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
-
-        draw_samples()
-        copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
-        copy_i.width = copy_j.width = 2.5
-
-        pygame.draw.rect(WINDOW, (255, 0, 0), copy_i)
-        pygame.draw.rect(WINDOW, (0, 0, 255), copy_j)
         pygame.display.update()
 
 
