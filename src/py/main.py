@@ -16,14 +16,17 @@ pygame.font.init()
 screens.main()
 
 
-NUM: int = 625               # number of rectangle samples
+NUM: int = 300               # number of rectangle samples
 SIDE: float = 625.0          # side of the main window
 WIDTH: float = SIDE / NUM    # width of each rectangle
 
 WINDOW = pygame.display.set_mode((SIDE, SIDE))
 FPS: int = 60
 
-ALGORITHM: int = screens.algo
+try:
+    ALGORITHM: int = screens.algo
+except AttributeError:
+    ALGORITHM: int = 0       # default algorithm is Bubble Sort
 
 SAMPLES: list[int] = [
     pygame.Rect(WIDTH*i, 0, WIDTH, i+1) for i in range(NUM)
@@ -40,7 +43,7 @@ C_BINS: list[str] = [
     r"./bin/dll/selectionSort.dll",
 ]
 
-SORTING_FUNCTIONS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
+SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
 
 pygame.display.set_caption("Sorting Visualizer")
 
@@ -62,34 +65,36 @@ def draw_samples() -> None:
         pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
 
 
-def sort_samples(algorithm: int) -> None:
-    if algorithm == 1:
-        bubble_sort()
+def draw_sorting(swaps: list[list[int]]) -> None:
+    for (i, j) in swaps:
+        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+        WINDOW.fill((0, 0, 0))
+        draw_samples()
+        # pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
+        # pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
+        pygame.display.update()
 
-    elif algorithm == 2:
-        double_selection_sort()
 
-    elif algorithm == 3:
-        heap_sort()
+def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
+    c_array = (ctypes.c_int * NUM)(*heights)
 
-    elif algorithm == 4:
-        insertion_sort()
+    SORTING_LIBS[algorithm].sort.argtypes = (ctypes.POINTER(ctypes.c_int * NUM), ctypes.c_int)
+    SORTING_LIBS[algorithm].sort.restype = ctypes.POINTER(ctypes.c_int * 2*NUM**2)
 
-    elif algorithm == 5:
-        merge_sort()
+    swaps_ptr = SORTING_LIBS[algorithm].sort(c_array, ctypes.c_int(NUM))
 
-    elif algorithm == 6:
-        quick_sort()
+    swaps_list: list[list[int]] = []
+    for i in swaps_ptr.contents:
+        if i[0] == i[1] == -1:
+            break
+        swaps_list.append([i[0], i[1]])
 
-    elif algorithm == 7:
-        reverse_selection_sort()
-
-    else:
-        selection_sort()
+    return swaps_list
 
 
 def main() -> None:
     heights = [sample.height for sample in SAMPLES]
+    samples_sorted = True
 
     clock = pygame.time.Clock()
     RUN = True
@@ -104,9 +109,15 @@ def main() -> None:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     heights = randomize_heights()
+                    samples_sorted = False
 
                 if event.key == pygame.K_RETURN:
-                    sort_samples(ALGORITHM)
+                    if samples_sorted:
+                        continue
+
+                    swaps = sort_samples(ALGORITHM, heights)
+                    draw_sorting(swaps)
+                    samples_sorted = True
 
         WINDOW.fill((0, 0, 0))
         draw_samples()

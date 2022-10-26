@@ -23,23 +23,23 @@ def main() -> None:
     global root
 
     root = tk.Tk()
-    root.title("Welcome to Sorting-Visualizer")
+    root.title("Welcome to Sorting Visualizer")
 
     tk.Label(
         text="Please select one of the following \nsorting algorithms:",
         font=("consolas", 12, "bold")
     ).pack()
 
-    var = tk.IntVar(root, 1)
+    var = tk.IntVar(root, 0)
     values = {
-        "Bubble Sort": 1,
-        "Double Selection Sort": 2,
-        "Heap Sort": 3,
-        "Insertion Sort": 4,
-        "Merge Sort": 5,
-        "Quick Sort": 6,
-        "Reverse Selection Sort": 7,
-        "Selection Sort": 8,
+        "Bubble Sort": 0,
+        "Double Selection Sort": 1,
+        "Heap Sort": 2,
+        "Insertion Sort": 3,
+        "Merge Sort": 4,
+        "Quick Sort": 5,
+        "Reverse Selection Sort": 6,
+        "Selection Sort": 7,
     }
 
     for (text, value) in values.items():
