@@ -53,6 +53,7 @@ def main() -> None:
         font=("consolas", 12, "bold")
     ).pack()
 
+    root.bind("<Return>", (lambda evt: start(var)))
     root.mainloop()
 
 
