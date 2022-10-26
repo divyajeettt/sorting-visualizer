@@ -2,7 +2,6 @@ import pygame
 import random
 import ctypes
 import screens
-import subprocess
 
 
 """
@@ -10,6 +9,7 @@ CONTROLS:
 
 Space: Shuffle the samples
 Enter: Start the sorting algorithm
+S: Change the sorting algorithm
 """
 
 
@@ -66,12 +66,26 @@ def draw_samples() -> None:
 
 
 def draw_sorting(swaps: list[list[int]]) -> None:
+    if ALGORITHM == 4:
+        for (i, height) in swaps:
+            SAMPLES[i].height = height
+
+            draw_samples()
+            copy_i = SAMPLES[i].copy()
+            copy_i.width = 2.5
+
+            pygame.draw.rect(WINDOW, (255, 0, 0) if i%2 else (0, 0, 255), copy_i)
+            pygame.display.update()
+
+        return
+
     for (i, j) in swaps:
         SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
-        draw_samples()
 
+        draw_samples()
         copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
-        copy_i.width = copy_j.width = 5
+        copy_i.width = copy_j.width = 2.5
+
         pygame.draw.rect(WINDOW, (255, 0, 0), copy_i)
         pygame.draw.rect(WINDOW, (0, 0, 255), copy_j)
         pygame.display.update()
@@ -95,6 +109,8 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
 
 
 def main() -> None:
+    global ALGORITHM
+
     heights = [sample.height for sample in SAMPLES]
     samples_sorted = True
 
@@ -119,6 +135,10 @@ def main() -> None:
                     swaps = sort_samples(ALGORITHM, heights)
                     draw_sorting(swaps)
                     samples_sorted = True
+
+                if event.key == pygame.K_s:
+                    screens.main()
+                    ALGORITHM = screens.algo
 
         draw_samples()
         pygame.display.update()
