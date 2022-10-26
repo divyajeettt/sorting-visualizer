@@ -2,7 +2,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void merge(int *arr, int low, int mid, int high, int *swaps, long *idx)
+void merge(int *arr, int low, int mid, int high, int *build, long *idx)
 {
     int i, j, k;
     int n1 = mid - low + 1;
@@ -12,10 +12,18 @@ void merge(int *arr, int low, int mid, int high, int *swaps, long *idx)
     int left[n1], right[n2];
 
     for (int p=0; p < n1; p++)
+    {
+        build[(*idx)++] = low + p;
+        build[(*idx)++] = arr[low + p];
         left[p] = arr[low + p];
+    }
 
     for (int q=0; q < n2; q++)
+    {
+        build[(*idx)++] = mid + q + 1;
+        build[(*idx)++] = arr[mid + q + 1];
         right[q] = arr[mid + q + 1];
+    }
 
     i = j = 0;
     // i, j are index pointers for left[], right[]
@@ -23,12 +31,15 @@ void merge(int *arr, int low, int mid, int high, int *swaps, long *idx)
 
     for (k=low; i<n1 && j<n2; k++)
     {
+        build[(*idx)++] = k;
         if (left[i] <= right[j])
         {
+            build[(*idx)++] = left[i];
             arr[k] = left[i++];
         }
         else
         {
+            build[(*idx)++] = right[j];
             arr[k] = right[j++];
         }
     }
@@ -36,19 +47,23 @@ void merge(int *arr, int low, int mid, int high, int *swaps, long *idx)
     // copy remaining elements of left[]
     while (i < n1)
     {
+        build[(*idx)++] = k;
+        build[(*idx)++] = left[i];
         arr[k++] = left[i++];
     }
 
     // copy remaining elements of right[]
     while (j < n2)
     {
+        build[(*idx)++] = k;
+        build[(*idx)++] = right[j];
         arr[k++] = right[j++];
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void mergeSort(int *arr, int start, int end, int *swaps, long *idx)
+void mergeSort(int *arr, int start, int end, int *build, long *idx)
 {
     if (start >= end)
     {
@@ -57,9 +72,9 @@ void mergeSort(int *arr, int start, int end, int *swaps, long *idx)
     else
     {
         int mid = (start + end) / 2;
-        mergeSort(arr, start, mid, swaps, idx);
-        mergeSort(arr, mid+1, end, swaps, idx);
-        merge(arr, start, mid, end, swaps, idx);
+        mergeSort(arr, start, mid, build, idx);
+        mergeSort(arr, mid+1, end, build, idx);
+        merge(arr, start, mid, end, build, idx);
     }
 }
 
@@ -67,9 +82,9 @@ void mergeSort(int *arr, int start, int end, int *swaps, long *idx)
 
 int *sort(int *arr, int n)
 {
-    int *swaps = (int *) calloc(2*n*n, sizeof(int));
+    int *build = (int *) calloc(2*n*n, sizeof(int));
     static long idx = 0;
 
-    mergeSort(arr, 0, n-1, swaps, &idx);
-    return swaps;
+    mergeSort(arr, 0, n-1, build, &idx);
+    return build;
 }
