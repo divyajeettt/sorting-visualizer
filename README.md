@@ -44,6 +44,7 @@ The following features are provided in the visualizer:
   - [Quick Sort](https://en.wikipedia.org/wiki/Quicksort) using the [Lomuto Partition Scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
   - [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort) using the [Top-Down Implementation](https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation)
   - [Heap Sort](https://en.wikipedia.org/wiki/Heapsort) using the [Floyd's Heap Construction Algorithm](https://en.wikipedia.org/wiki/Heapsort#Floyd's_heap_construction)
+  - [Tim Sort](https://en.wikipedia.org/wiki/Timsort) using above mentioned Insertion and Merge
 - Ability to select the sorting algorithm before each trial
 
 ## Controls
@@ -74,7 +75,6 @@ python3 ./src/py/main.py
 - Ability to select ascending/descending order for sorting
 - Add more interesting algorithms (non-exhasutively):
   - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
-  - [Tim Sort](https://en.wikipedia.org/wiki/Timsort)
   - [Comb Sort](https://en.wikipedia.org/wiki/Comb_sort)
   - [Smooth Sort](https://en.wikipedia.org/wiki/Smoothsort)
 - Ability to dynamically change the number of samples
