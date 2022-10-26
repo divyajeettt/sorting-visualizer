@@ -2,6 +2,7 @@ import pygame
 import random
 import ctypes
 import screens
+import subprocess
 
 
 """
@@ -66,12 +67,7 @@ def draw_samples() -> None:
 
 def draw_sorting(swaps: list[list[int]]) -> None:
     for (i, j) in swaps:
-        try:
-            SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
-        except IndexError:
-            print(i, j)
-            continue
-
+        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
         draw_samples()
 
         copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
@@ -84,19 +80,15 @@ def draw_sorting(swaps: list[list[int]]) -> None:
 def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
     c_array = (ctypes.c_int * NUM)(*heights)
 
-    if algorithm == 5:
-        del SORTING_LIBS[5]
-        SORTING_LIBS.insert(5, ctypes.CDLL(r"./bin/dll/quickSort.dll"))
-
     SORTING_LIBS[algorithm].sort.argtypes = (ctypes.POINTER(ctypes.c_int * NUM), ctypes.c_int)
     SORTING_LIBS[algorithm].sort.restype = ctypes.POINTER(ctypes.c_int * 2*NUM**2)
 
     swaps_ptr = SORTING_LIBS[algorithm].sort(c_array, ctypes.c_int(NUM))
-
     swaps_list: list[list[int]] = []
+
     for i in swaps_ptr.contents:
         if i[0] == i[1] == 0:
-            break
+            continue
         swaps_list.append([i[0], i[1]])
 
     return swaps_list
@@ -118,20 +110,15 @@ def main() -> None:
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    print("pressed space -> randomizing")
                     heights = randomize_heights()
                     samples_sorted = False
-                    print("randomized")
 
                 if event.key == pygame.K_RETURN:
                     if samples_sorted:
                         continue
-                    print("starting to sort")
                     swaps = sort_samples(ALGORITHM, heights)
-                    print("drawing sort")
                     draw_sorting(swaps)
                     samples_sorted = True
-                    print("samples are now sorted")
 
         draw_samples()
         pygame.display.update()
