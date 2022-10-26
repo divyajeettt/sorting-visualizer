@@ -65,6 +65,7 @@ The following features are provided in the visualizer:
 To run the visualizer, clone the repository on your device, navigate to the folder, and execute:
 
 ```
+make
 python3 ./src/py/main.py
 ```
 
