@@ -14,7 +14,7 @@ int *sort(int *arr, int n)
             if (arr[j+1] < arr[j])
             {
                 swaps[idx++] = j;
-                swaps[idx++] = j+1;
+                swaps[idx++] = j + 1;
 
                 int temp = arr[j];
                 arr[j] = arr[j+1];
