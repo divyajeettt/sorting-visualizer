@@ -10,6 +10,7 @@ CONTROLS:
 Space: Shuffle the samples
 Enter: Start the sorting algorithm
 S: Change the sorting algorithm
+R: Arrange the samples in reverse order of sorting
 """
 
 
@@ -144,6 +145,12 @@ def main() -> None:
                 if event.key == pygame.K_s:
                     screens.main()
                     ALGORITHM = screens.algo
+
+                if event.key == pygame.K_r:
+                    heights = list(range(NUM, 0, -1))
+                    for i in range(NUM):
+                        SAMPLES[i].height = heights[i]
+                    samples_sorted = False
 
         draw_samples()
         pygame.display.update()

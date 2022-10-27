@@ -35,24 +35,28 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
 The following features are provided in the visualizer:
 
 - Ability to shuffle the samples any number of times before sorting
-- (Currently) 10 different popular sorting algorithms:
-  - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
-  - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
-  - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
-  - [Reverse Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Selection Sort in reverse
-  - [Double Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Bidirectional Selection Sort
-  - [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
-  - [Quick Sort](https://en.wikipedia.org/wiki/Quicksort) using the [Lomuto Partition Scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
-  - [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort) using the [Top-Down Implementation](https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation)
-  - [Heap Sort](https://en.wikipedia.org/wiki/Heapsort) using the [Floyd's Heap Construction Algorithm](https://en.wikipedia.org/wiki/Heapsort#Floyd's_heap_construction)
-  - [Tim Sort](https://en.wikipedia.org/wiki/Timsort) using above mentioned Insertion and Merge
-- Ability to select the sorting algorithm before each trial
+- Ability to change the sorting algorithm before each trial
+
+## Sorting Agorithms implemented
+
+Currently, 10 different popular sorting algorithms are supported. These are:
+- [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
+- [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
+- [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
+- [Reverse Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Selection Sort in reverse
+- [Double Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Bidirectional Selection Sort
+- [Insertion Sort](https://en.wikipedia.org/wiki/Insertion_sort)
+- [Quick Sort](https://en.wikipedia.org/wiki/Quicksort) using the [Lomuto Partition Scheme](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme)
+- [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort) using the [Top-Down Implementation](https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation)
+- [Heap Sort](https://en.wikipedia.org/wiki/Heapsort) using the [Floyd's Heap Construction Algorithm](https://en.wikipedia.org/wiki/Heapsort#Floyd's_heap_construction)
+- [Tim Sort](https://en.wikipedia.org/wiki/Timsort) using above mentioned Insertion and Merge
 
 ## Controls
 
 - Space: Shuffle the samples
 - Enter: Start the sorting algorithm
 - S: Change the sorting algorithm
+- R: Arrange the samples in the reverse order of sorting
 
 *Note: The algorithm cannot be changed while the samples are being sorted.*
 
@@ -74,7 +78,6 @@ python3 ./src/py/main.py
 ## Future Plans
 
 - Ability to select ascending/descending order for sorting
-- Add a control: Press a button to have the samples in the opposite order of sorting (for example, if we are sorting in Ascending Order, then the control should set the samples in Descending Order and vice-versa)
 - Add more interesting algorithms (non-exhasutively):
   - [Comb Sort](https://en.wikipedia.org/wiki/Comb_sort)
   - [Smooth Sort](https://en.wikipedia.org/wiki/Smoothsort)
