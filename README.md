@@ -79,3 +79,4 @@ python3 ./src/py/main.py
   - [Smooth Sort](https://en.wikipedia.org/wiki/Smoothsort)
 - Ability to dynamically change the number of samples
 - Speed up the visualization process if possible
+- Add a timer/counter that counts the time elapsed in sorting, the number of array traversals, and the number of swaps (difficult to implement, since the sorting is being done in C)
