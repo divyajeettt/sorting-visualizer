@@ -56,7 +56,7 @@ Currently, 10 different popular sorting algorithms are supported. These are:
 - Space: Shuffle the samples
 - Enter: Start the sorting algorithm
 - S: Change the sorting algorithm
-- R: Arrange the samples in the reverse order of sorting
+- R: Arrange the samples in reverse order of sorting
 
 *Note: The algorithm cannot be changed while the samples are being sorted.*
 
