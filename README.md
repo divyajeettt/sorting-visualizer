@@ -74,6 +74,7 @@ python3 ./src/py/main.py
 ## Future Plans
 
 - Ability to select ascending/descending order for sorting
+- Add a control: Press a button to have the samples in the opposite order of sorting (for example, if we are sorting in Ascending Order, then the control should set the samples in Descending Order and vice-versa)
 - Add more interesting algorithms (non-exhasutively):
   - [Comb Sort](https://en.wikipedia.org/wiki/Comb_sort)
   - [Smooth Sort](https://en.wikipedia.org/wiki/Smoothsort)
