@@ -2,7 +2,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-void heapify(int *arr, int i, int n, int *swaps, long *idx) {
+void heapify(int *arr, int i, int n, int *swaps, long *idx)
+{
     int end = n - 1;
     while (i <= (end-1)/2)
     {

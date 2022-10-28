@@ -5,8 +5,8 @@
 int partition(int *arr, int start, int end, int *swaps, long *idx)
 {
     int temp;
-    int pivot = arr[end];  // Always assume pivot as the last element
-    int i = start - 1;     // Correct position of the pivot so far
+    int pivot = arr[end];    // Always assume pivot as the last element
+    int i = start - 1;       // Correct position of the pivot so far
 
     for (int j=start; j <= end-1; j++)
     {

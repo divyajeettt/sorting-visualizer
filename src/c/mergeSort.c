@@ -87,7 +87,7 @@ int *sort(int *arr, int n)
 
     build[idx++] = -1;
     build[idx++] = -1;
-
     mergeSort(arr, 0, n-1, build, &idx);
+
     return build;
 }

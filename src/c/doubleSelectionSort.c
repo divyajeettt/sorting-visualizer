@@ -2,7 +2,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 
-int *sort(int *arr, int n) {
+int *sort(int *arr, int n)
+{
     int minIndex, maxIndex, min, max, temp, l;
 
     int *swaps = (int *) calloc(2*n*n, sizeof(int));

@@ -90,7 +90,8 @@ int min(int x, int y)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-int *sort(int *arr, int n) {
+int *sort(int *arr, int n)
+{
     int *swaps = (int *) calloc(2*n*n, sizeof(int));
     long idx = 0;
 
