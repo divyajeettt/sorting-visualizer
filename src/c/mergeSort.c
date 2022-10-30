@@ -8,7 +8,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
     int n1 = mid - low + 1;
     int n2 = high - mid;
 
-    // make temporary copies of left and right arrays
     int left[n1], right[n2];
 
     for (int p=0; p < n1; p++)
@@ -26,9 +25,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
     }
 
     i = j = 0;
-    // i, j are index pointers for left[], right[]
-    // k is the index pointer index of merged subarray
-
     for (k=low; i<n1 && j<n2; k++)
     {
         build[(*idx)++] = k;
@@ -44,7 +40,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
         }
     }
 
-    // copy remaining elements of left[]
     while (i < n1)
     {
         build[(*idx)++] = k;
@@ -52,7 +47,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
         arr[k++] = left[i++];
     }
 
-    // copy remaining elements of right[]
     while (j < n2)
     {
         build[(*idx)++] = k;
