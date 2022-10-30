@@ -60,14 +60,11 @@ Currently, eleven different popular sorting algorithms are supported. These are:
 - S: Change the sorting algorithm
 - R: Arrange the samples in reverse order of sorting
 
-*Notes:*
-
-- *The algorithm cannot be changed while the samples are being sorted.*
-- *The samples cannot be sorted when they are already in sorted order.*
-
 ## Footnotes
 
-**Do not close** the application while the algorithmis being visualized as ongoing system processes may cause the app to crash.
+- **Do not close** the application while the algorithmis being visualized as ongoing system processes may cause the app to crash.
+- The algorithm *cannot be changed* while the samples are being sorted.
+- The samples *cannot be sorted* when they are already in sorted order.
 
 ## Run
 
