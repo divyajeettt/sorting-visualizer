@@ -9,16 +9,6 @@ def start(var: tk.IntVar) -> None:
     root.destroy()
 
 
-def ending(text: str) -> int:
-    temp = tk.Tk()
-    temp.withdraw()
-
-    return msg.askyesno(
-        title="Array Sorted", message=f"Do you want to simulate the sorting again?",
-        parent=temp
-    )
-
-
 def main() -> None:
     global root
 
@@ -34,14 +24,15 @@ def main() -> None:
     values = {
         "Bubble Sort": 0,
         "Cocktail Shaker Sort": 1,
-        "Double Selection Sort": 2,
-        "Heap Sort": 3,
-        "Insertion Sort": 4,
-        "Merge Sort": 5,
-        "Quick Sort": 6,
-        "Reverse Selection Sort": 7,
-        "Selection Sort": 8,
-        "Tim Sort": 9,
+        "Cycle Sort": 2,
+        "Double Selection Sort": 3,
+        "Heap Sort": 4,
+        "Insertion Sort": 5,
+        "Merge Sort": 6,
+        "Quick Sort": 7,
+        "Reverse Selection Sort": 8,
+        "Selection Sort": 9,
+        "Tim Sort": 10,
     }
 
     for (text, value) in values.items():
