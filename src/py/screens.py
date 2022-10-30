@@ -29,10 +29,11 @@ def main() -> None:
         "Heap Sort": 4,
         "Insertion Sort": 5,
         "Merge Sort": 6,
-        "Quick Sort": 7,
-        "Reverse Selection Sort": 8,
-        "Selection Sort": 9,
-        "Tim Sort": 10,
+        "Odd Even Sort": 7,
+        "Quick Sort": 8,
+        "Reverse Selection Sort": 9,
+        "Selection Sort": 10,
+        "Tim Sort": 11,
     }
 
     for (text, value) in values.items():

@@ -49,6 +49,7 @@ C_BINS: list[str] = [
     r"./bin/dll/heapSort.dll",
     r"./bin/dll/insertionSort.dll",
     r"./bin/dll/mergeSort.dll",
+    r"./bin/dll/oddEvenSort.dll",
     r"./bin/dll/quickSort.dll",
     r"./bin/dll/reverseSelectionSort.dll",
     r"./bin/dll/selectionSort.dll",
@@ -65,10 +66,11 @@ ALGOS: dict[int, str] = {
     4: "Heap Sort",
     5: "Insertion Sort",
     6: "Merge Sort",
-    7: "Quick Sort",
-    8: "Reverse Selection Sort",
-    9: "Selection Sort",
-    10: "Tim Sort",
+    7: "Odd Even Sort",
+    8: "Quick Sort",
+    9: "Reverse Selection Sort",
+    10: "Selection Sort",
+    11: "Tim Sort",
 }
 
 # Fonts
