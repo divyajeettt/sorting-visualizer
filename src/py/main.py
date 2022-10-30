@@ -18,22 +18,29 @@ pygame.font.init()
 screens.main()
 
 
-NUM: int = 625               # number of rectangle samples
-SIDE: float = 625.0          # side of the main window
-WIDTH: float = SIDE / NUM    # width of each rectangle
+# Constants
+WINDOW_X: float = 850.0                # width of the main window
+WINDOW_Y: float = 550.0                # height of the main window
+NUM: int = int(WINDOW_X)               # number of rectangle samples
+WIDTH: float = WINDOW_X / NUM          # width of each rectangle
+SLOPE: float = WINDOW_Y / WINDOW_X
 
-WINDOW = pygame.display.set_mode((SIDE, SIDE))
+# Window and Frame Rate
+WINDOW = pygame.display.set_mode((WINDOW_X, WINDOW_Y))
 FPS: int = 60
 
+# Set up the Sorting Algorithm
 try:
     ALGORITHM: int = screens.algo
 except AttributeError:
     ALGORITHM: int = 0       # default algorithm is Bubble Sort
 
-SAMPLES: list[int] = [
-    pygame.Rect(WIDTH*i, 0, WIDTH, i+1) for i in range(NUM)
+# Create the list of samples
+SAMPLES: list[pygame.Rect] = [
+    pygame.Rect(WIDTH*i, 0, WIDTH, (i+1)*SLOPE) for i in range(NUM)
 ]
 
+# Load the Dynamically Linked Libraries
 C_BINS: list[str] = [
     r"./bin/dll/bubbleSort.dll",
     r"./bin/dll/cocktailShakerSort.dll",
@@ -50,23 +57,63 @@ C_BINS: list[str] = [
 
 SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
 
-pygame.display.set_caption("Sorting Visualizer")
+ALGOS: dict[int, str] = {
+    0: "Bubble Sort",
+    1: "Cocktail Shaker Sort",
+    2: "Cycle Sort",
+    3: "Double Selection Sort",
+    4: "Heap Sort",
+    5: "Insertion Sort",
+    6: "Merge Sort",
+    7: "Quick Sort",
+    8: "Reverse Selection Sort",
+    9: "Selection Sort",
+    10: "Tim Sort",
+}
+
+# Fonts
+font = pygame.font.SysFont("Times New Roman", 20)
+
+# Colors
+RED:   tuple[int, int, int] = (255, 0, 0)
+GREEN: tuple[int, int, int] = (0, 255, 0)
+BLUE:  tuple[int, int, int] = (0, 0, 255)
+WHITE: tuple[int, int, int] = (255, 255, 255)
+BLACK: tuple[int, int, int] = (0, 0, 0)
+
+# Set the window-title
+pygame.display.set_caption(f"Sorting Visualizer: {ALGOS[ALGORITHM]}")
 
 
 def randomize_heights() -> list[int]:
-    heights = list(range(1, NUM+1))
-    random.shuffle(heights)
+    for _ in range(2*NUM):
+        i, j = random.randint(0, NUM-1), random.randint(0, NUM-1)
+        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+        draw_samples()
+        pygame.display.update()
 
-    for i in range(NUM):
-        SAMPLES[i].height = heights[i]
+    return [sample.height for sample in SAMPLES]
 
-    return heights
+
+def reverse_samples(samples_sorted: bool) -> list[int]:
+    if not samples_sorted:
+        for i in range(NUM):
+            SAMPLES[i].height = (NUM-i)*SLOPE
+            draw_samples()
+            pygame.display.update()
+    else:
+        for i in range(NUM//2):
+            SAMPLES[i].height, SAMPLES[NUM-i-1].height = SAMPLES[NUM-i-1].height, SAMPLES[i].height
+            draw_samples()
+            pygame.display.update()
+
+    return [sample.height for sample in SAMPLES]
 
 
 def draw_samples() -> None:
-    WINDOW.fill((0, 0, 0))
+    WINDOW.fill(BLACK)
     for i in range(NUM):
-        pygame.draw.rect(WINDOW, (255, 255, 255), SAMPLES[i])
+        pygame.draw.rect(WINDOW, WHITE, SAMPLES[i])
 
 
 def draw_sorting(swaps: list[list[int]]) -> None:
@@ -75,25 +122,17 @@ def draw_sorting(swaps: list[list[int]]) -> None:
     for (i, j) in swaps:
         if i == j == -1:
             merging = True
+            continue
 
         if not merging:
             SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
-
             draw_samples()
-            copy_i, copy_j = SAMPLES[i].copy(), SAMPLES[j].copy()
-            copy_i.width = copy_j.width = 2.5
-
-            pygame.draw.rect(WINDOW, (255, 0, 0), copy_i)
-            pygame.draw.rect(WINDOW, (0, 0, 255), copy_j)
-
+            pygame.draw.rect(WINDOW, RED, SAMPLES[i])
+            pygame.draw.rect(WINDOW, BLUE, SAMPLES[j])
         else:
             SAMPLES[i].height = j
-
             draw_samples()
-            copy_i = SAMPLES[i].copy()
-            copy_i.width = 2.5
-
-            pygame.draw.rect(WINDOW, (255, 0, 0) if i%2 else (0, 0, 255), copy_i)
+            pygame.draw.rect(WINDOW, GREEN, SAMPLES[i])
 
         pygame.display.update()
 
@@ -146,11 +185,10 @@ def main() -> None:
                 if event.key == pygame.K_s:
                     screens.main()
                     ALGORITHM = screens.algo
+                    pygame.display.set_caption(f"Sorting Visualizer: {ALGOS[ALGORITHM]}")
 
                 if event.key == pygame.K_r:
-                    heights = list(range(NUM, 0, -1))
-                    for i in range(NUM):
-                        SAMPLES[i].height = heights[i]
+                    heights = reverse_samples(samples_sorted)
                     samples_sorted = False
 
         draw_samples()
