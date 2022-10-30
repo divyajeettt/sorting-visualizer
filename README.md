@@ -39,11 +39,12 @@ The following features are provided in the visualizer:
 
 ## Sorting Agorithms implemented
 
-Currently, eleven different popular sorting algorithms are supported. These are:
+Currently, twelve different popular sorting algorithms are supported. These are:
 
 - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
 - [Cycle Sort](https://en.wikipedia.org/wiki/Cycle_sort)
+- [Odd Even Sort](https://en.wikipedia.org/wiki/Odd%E2%80%93even_sort)
 - [Selection Sort](https://en.wikipedia.org/wiki/Selection_sort)
 - [Reverse Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Selection Sort in reverse
 - [Double Selection Sort](https://en.wikipedia.org/wiki/Selection_sort#Variants): Bidirectional Selection Sort
