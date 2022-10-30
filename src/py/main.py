@@ -19,8 +19,8 @@ screens.main()
 
 
 # Constants
-WINDOW_X: float = 850.0                # width of the main window
-WINDOW_Y: float = 550.0                # height of the main window
+WINDOW_X: float = 900.0                # width of the main window
+WINDOW_Y: float = 600.0                # height of the main window
 NUM: int = int(WINDOW_X)               # number of rectangle samples
 WIDTH: float = WINDOW_X / NUM          # width of each rectangle
 SLOPE: float = WINDOW_Y / WINDOW_X
