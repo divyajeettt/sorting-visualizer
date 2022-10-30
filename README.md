@@ -10,7 +10,7 @@ The project sorts an array of *rectangles* (`pygame.rect()`) of increasing lengt
 
 The visualizer is built using an interface between Python and C (using the [`ctypes`](https://docs.python.org/3/library/ctypes.html) package). After the rectangles are shuffled, an array of their heights is passed to the chosen C-sorting function. The custom sorting function sorts it, and returns the combinations of traversals/swaps one needs to do to sort the list. These are then passed to the pygame visualization functions to draw on the screen.
 
-The Python-C interface can be found on [Line 101](https://github.com/divyajeettt/sorting-visualizer/blob/5f1df1c773f11af41dac977859e38cd179a9ea53/src/py/main.py#L101) of `main.py`:
+The Python-C interface can be found on [Line 142](https://github.com/divyajeettt/sorting-visualizer/blob/96a5f39d092d4097adaaf4174b9a744363f862b3/src/py/main.py#L142) of `main.py`:
 
 ```py
 def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
