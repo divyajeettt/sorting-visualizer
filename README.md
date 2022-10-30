@@ -39,7 +39,7 @@ The following features are provided in the visualizer:
 
 ## Sorting Agorithms implemented
 
-Currently, 10 different popular sorting algorithms are supported. These are:
+Currently, eleven different popular sorting algorithms are supported. These are:
 
 - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
