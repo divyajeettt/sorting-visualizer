@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -9,7 +8,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
     int n1 = mid - low + 1;
     int n2 = high - mid;
 
-    // make temporary copies of left and right arrays
     int left[n1], right[n2];
 
     for (int p=0; p < n1; p++)
@@ -27,9 +25,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
     }
 
     i = j = 0;
-    // i, j are index pointers for left[], right[]
-    // k is the index pointer index of merged subarray
-
     for (k=low; i<n1 && j<n2; k++)
     {
         build[(*idx)++] = k;
@@ -45,7 +40,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
         }
     }
 
-    // copy remaining elements of left[]
     while (i < n1)
     {
         build[(*idx)++] = k;
@@ -53,7 +47,6 @@ void merge(int *arr, int low, int mid, int high, int *build, long *idx)
         arr[k++] = left[i++];
     }
 
-    // copy remaining elements of right[]
     while (j < n2)
     {
         build[(*idx)++] = k;
@@ -68,16 +61,16 @@ void insertionSort(int *arr, int low, int high, int *swaps, long *idx)
 {
     for (int i=low+1; i <= high; i++)
     {
-        int temp = arr[i];
-        int j = i - 1;
-        while (j >= low && arr[j] > temp)
+        int j = i;
+        while (j > low && arr[j] < arr[j - 1])
         {
-            swaps[(*idx)++] = j + 1;
-            swaps[(*idx)++] = arr[j];
-            arr[j+1] = arr[j];
-            j--;
+            swaps[(*idx)++] = j;
+            swaps[(*idx)++] = j - 1;
+
+            int temp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[--j] = temp;
         }
-        arr[j+1] = temp;
     }
 }
 
@@ -96,13 +89,14 @@ int *sort(int *arr, int n)
     long idx = 0;
 
     int RUN = (n < 300) ? 32 : 64;
-    swaps[idx++] = -1;
-    swaps[idx++] = -1;
 
     for (int i=0; i < n; i += RUN)
     {
         insertionSort(arr, i, min(i+RUN-1, n-1), swaps, &idx);
     }
+
+    swaps[idx++] = -1;
+    swaps[idx++] = -1;
 
     for (int size=RUN; size < n; size *= 2)
     {
