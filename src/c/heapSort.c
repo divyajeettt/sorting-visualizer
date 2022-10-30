@@ -52,13 +52,11 @@ int *sort(int *arr, int n)
     int *swaps = (int *) calloc(2*n*n, sizeof(int));
     long idx = 0;
 
-    // heapify the array
     for (int i=n-1; i >=0; i--)
     {
         heapify(arr, i, n, swaps, &idx);
     }
 
-    // // keep extracting the Maximum from the heap
     for (int i=n; i > 1; i--)
     {
         extractMax(arr, i, swaps, &idx);
