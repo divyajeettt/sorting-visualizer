@@ -22,18 +22,19 @@ def main() -> None:
 
     var = tk.IntVar(root, 0)
     values = {
-        "Bubble Sort": 0,
-        "Cocktail Shaker Sort": 1,
-        "Cycle Sort": 2,
-        "Double Selection Sort": 3,
-        "Heap Sort": 4,
-        "Insertion Sort": 5,
-        "Merge Sort": 6,
-        "Odd Even Sort": 7,
-        "Quick Sort": 8,
-        "Reverse Selection Sort": 9,
-        "Selection Sort": 10,
-        "Tim Sort": 11,
+        "Bitonic Sort": 0,
+        "Bubble Sort": 1,
+        "Cocktail Shaker Sort": 2,
+        "Cycle Sort": 3,
+        "Double Selection Sort": 4,
+        "Heap Sort": 5,
+        "Insertion Sort": 6,
+        "Merge Sort": 7,
+        "Odd Even Sort": 8,
+        "Quick Sort": 9,
+        "Reverse Selection Sort": 10,
+        "Selection Sort": 11,
+        "Tim Sort": 12,
     }
 
     for (text, value) in values.items():

@@ -19,7 +19,7 @@ screens.main()
 
 
 # Constants
-WINDOW_X: float = 900.0                # width of the main window
+WINDOW_X: float = 1024.0               # width of the main window
 WINDOW_Y: float = 600.0                # height of the main window
 NUM: int = int(WINDOW_X)               # number of rectangle samples
 WIDTH: float = WINDOW_X / NUM          # width of each rectangle
@@ -42,6 +42,7 @@ SAMPLES: list[pygame.Rect] = [
 
 # Load the Dynamically Linked Libraries
 C_BINS: list[str] = [
+    r"./bin/dll/bitonicSort.dll",
     r"./bin/dll/bubbleSort.dll",
     r"./bin/dll/cocktailShakerSort.dll",
     r"./bin/dll/cycleSort.dll",
@@ -59,18 +60,19 @@ C_BINS: list[str] = [
 SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
 
 ALGOS: dict[int, str] = {
-    0: "Bubble Sort",
-    1: "Cocktail Shaker Sort",
-    2: "Cycle Sort",
-    3: "Double Selection Sort",
-    4: "Heap Sort",
-    5: "Insertion Sort",
-    6: "Merge Sort",
-    7: "Odd Even Sort",
-    8: "Quick Sort",
-    9: "Reverse Selection Sort",
-    10: "Selection Sort",
-    11: "Tim Sort",
+    0: "Bitonic Sort",
+    1: "Bubble Sort",
+    2: "Cocktail Shaker Sort",
+    3: "Cycle Sort",
+    4: "Double Selection Sort",
+    5: "Heap Sort",
+    6: "Insertion Sort",
+    7: "Merge Sort",
+    8: "Odd Even Sort",
+    9: "Quick Sort",
+    10: "Reverse Selection Sort",
+    11: "Selection Sort",
+    12: "Tim Sort",
 }
 
 # Fonts

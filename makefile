@@ -5,6 +5,7 @@ create:
 	mkdir -p ./bin/o
 
 compile:
+	gcc -o ./bin/o/bitonicSort.o -c ./src/c/bitonicSort.c
 	gcc -o ./bin/o/bubbleSort.o -c ./src/c/bubbleSort.c
 	gcc -o ./bin/o/cocktailShakerSort.o -c ./src/c/cocktailShakerSort.c
 	gcc -o ./bin/o/cycleSort.o -c ./src/c/cycleSort.c
@@ -19,6 +20,7 @@ compile:
 	gcc -o ./bin/o/timSort.o -c ./src/c/timSort.c
 
 link:
+	gcc -o ./bin/dll/bitonicSort.dll -s --shared ./bin/o/bitonicSort.o
 	gcc -o ./bin/dll/bubbleSort.dll -s --shared ./bin/o/bubbleSort.o
 	gcc -o ./bin/dll/cocktailShakerSort.dll -s --shared ./bin/o/cocktailShakerSort.o
 	gcc -o ./bin/dll/cycleSort.dll -s --shared ./bin/o/cycleSort.o
