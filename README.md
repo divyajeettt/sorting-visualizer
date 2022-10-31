@@ -4,13 +4,13 @@
 
 sorting-visualizer is a visualizer for the most popular sorting algorithms built using [`pygame`](https://www.pygame.org/docs/) in Python. It is a graphical-user interface based project.
 
-The project sorts an array of *rectangles* (`pygame.rect()`) of increasing lengths (in ascending order). Before each trial, the array must be shuffled. The sorting algorithm can also be changed.
+The project sorts an array of `pygame.rect()` of increasing lengths (in ascending order). Before each trial, the array must be shuffled. The sorting algorithm can also be changed.
 
 ## Where the 'sorting-visualization' happens
 
 The visualizer is built using an interface between Python and C (using the [`ctypes`](https://docs.python.org/3/library/ctypes.html) package). After the rectangles are shuffled, an array of their heights is passed to the chosen C-sorting function. The custom sorting function sorts it, and returns the combinations of traversals/swaps one needs to do to sort the list. These are then passed to the pygame visualization functions to draw on the screen.
 
-The Python-C interface can be found on [Line 143](https://github.com/divyajeettt/sorting-visualizer/blob/ea858f05b67cad0b5615eb02042e16246785f5cc/src/py/main.py#L143) of `main.py`:
+The Python-C interface can be found on [Line 147](https://github.com/divyajeettt/sorting-visualizer/blob/e118e28fb901857e36671d8a00d5b9ebd85c8c19/src/py/main.py#L147) of `main.py`:
 
 ```py
 def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
@@ -22,10 +22,11 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
     swaps_ptr = SORTING_LIBS[algorithm].sort(c_array, ctypes.c_int(NUM))
     swaps_list: list[list[int]] = []
 
-    for i in swaps_ptr.contents:
-        if i[0] == i[1] == 0:
-            continue
-        swaps_list.append([i[0], i[1]])
+    for i, long in enumerate(swaps_ptr.contents):
+        swap = [long[0], long[1]]
+        if i != 0 and swaps_list[-1] == swap == [0, 0]:
+            break
+        swaps_list.append(swap)
 
     return swaps_list
 ```
