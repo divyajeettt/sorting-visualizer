@@ -77,9 +77,6 @@ ALGOS: dict[int, str] = {
     13: "Tim Sort",
 }
 
-# Fonts
-font = pygame.font.SysFont("Times New Roman", 20)
-
 # Colors
 RED:   tuple[int, int, int] = (255, 0, 0)
 GREEN: tuple[int, int, int] = (0, 255, 0)
