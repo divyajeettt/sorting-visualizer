@@ -53,6 +53,7 @@ Currently, twelve different popular sorting algorithms are supported. These are:
 - [Merge Sort](https://en.wikipedia.org/wiki/Merge_sort) using the [Top-Down Implementation](https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation)
 - [Heap Sort](https://en.wikipedia.org/wiki/Heapsort) using the [Floyd's Heap Construction Algorithm](https://en.wikipedia.org/wiki/Heapsort#Floyd's_heap_construction)
 - [Tim Sort](https://en.wikipedia.org/wiki/Timsort) using above mentioned Insertion and Merge
+- [Bitonic Sort](https://en.wikipedia.org/wiki/Bitonic_sorter)
 
 ## Controls
 
