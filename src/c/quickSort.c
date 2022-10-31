@@ -52,7 +52,7 @@ void quickSort(int *arr, int start, int end, int *swaps, long *idx)
 int *sort(int *arr, int n)
 {
     int *swaps = (int *) calloc(2*n*n, sizeof(int));
-    static long idx = 0;
+    long idx = 0;
 
     quickSort(arr, 0, n-1, swaps, &idx);
 

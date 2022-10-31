@@ -77,7 +77,7 @@ void mergeSort(int *arr, int start, int end, int *build, long *idx)
 int *sort(int *arr, int n)
 {
     int *build = (int *) calloc(2*n*n, sizeof(int));
-    static long idx = 0;
+    long idx = 0;
 
     build[idx++] = -1;
     build[idx++] = -1;
