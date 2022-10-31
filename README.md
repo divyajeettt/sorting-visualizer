@@ -39,7 +39,7 @@ The following features are provided in the visualizer:
 
 ## Sorting Agorithms implemented
 
-Currently, twelve different popular sorting algorithms are supported. These are:
+Currently, fourteen different popular sorting algorithms are supported. These are:
 
 - [Bubble Sort](https://en.wikipedia.org/wiki/Bubble_sort)
 - [Cocktail Shaker Sort](https://en.wikipedia.org/wiki/Cocktail_shaker_sort)
@@ -54,6 +54,7 @@ Currently, twelve different popular sorting algorithms are supported. These are:
 - [Heap Sort](https://en.wikipedia.org/wiki/Heapsort) using the [Floyd's Heap Construction Algorithm](https://en.wikipedia.org/wiki/Heapsort#Floyd's_heap_construction)
 - [Tim Sort](https://en.wikipedia.org/wiki/Timsort) using above mentioned Insertion and Merge
 - [Bitonic Sort](https://en.wikipedia.org/wiki/Bitonic_sorter)
+- [Stooge Sort](https://en.wikipedia.org/wiki/Stooge_sort)
 
 ## Controls
 
