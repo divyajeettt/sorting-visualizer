@@ -1,3 +1,4 @@
+import enum
 import pygame
 import random
 import ctypes
@@ -42,6 +43,7 @@ SAMPLES: list[pygame.Rect] = [
 
 # Load the Dynamically Linked Libraries
 C_BINS: list[str] = [
+    r"./bin/dll/beadSort.dll",
     r"./bin/dll/bitonicSort.dll",
     r"./bin/dll/bubbleSort.dll",
     r"./bin/dll/cocktailShakerSort.dll",
@@ -150,10 +152,11 @@ def sort_samples(algorithm: int, heights: list[int]) -> list[list[int]]:
     swaps_ptr = SORTING_LIBS[algorithm].sort(c_array, ctypes.c_int(NUM))
     swaps_list: list[list[int]] = []
 
-    for i in swaps_ptr.contents:
-        if i[0] == i[1] == 0:
-            continue
-        swaps_list.append([i[0], i[1]])
+    for i, long in enumerate(swaps_ptr.contents):
+        swap = [long[0], long[1]]
+        if i != 0 and swaps_list[-1] == swap == [0, 0]:
+            break
+        swaps_list.append(swap)
 
     return swaps_list
 
