@@ -17,6 +17,7 @@ compile:
 	gcc -o ./bin/o/quickSort.o -c ./src/c/quickSort.c
 	gcc -o ./bin/o/reverseSelectionSort.o -c ./src/c/reverseSelectionSort.c
 	gcc -o ./bin/o/selectionSort.o -c ./src/c/selectionSort.c
+	gcc -o ./bin/o/stoogeSort.o -c ./src/c/stoogeSort.c
 	gcc -o ./bin/o/timSort.o -c ./src/c/timSort.c
 
 link:
@@ -32,4 +33,5 @@ link:
 	gcc -o ./bin/dll/quickSort.dll -s --shared ./bin/o/quickSort.o
 	gcc -o ./bin/dll/reverseSelectionSort.dll -s --shared ./bin/o/reverseSelectionSort.o
 	gcc -o ./bin/dll/selectionSort.dll -s --shared ./bin/o/selectionSort.o
+	gcc -o ./bin/dll/stoogeSort.dll -s --shared ./bin/o/stoogeSort.o
 	gcc -o ./bin/dll/timSort.dll -s --shared ./bin/o/timSort.o

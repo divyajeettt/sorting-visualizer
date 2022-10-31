@@ -1,4 +1,3 @@
-import enum
 import pygame
 import random
 import ctypes
@@ -43,7 +42,6 @@ SAMPLES: list[pygame.Rect] = [
 
 # Load the Dynamically Linked Libraries
 C_BINS: list[str] = [
-    r"./bin/dll/beadSort.dll",
     r"./bin/dll/bitonicSort.dll",
     r"./bin/dll/bubbleSort.dll",
     r"./bin/dll/cocktailShakerSort.dll",
@@ -56,6 +54,7 @@ C_BINS: list[str] = [
     r"./bin/dll/quickSort.dll",
     r"./bin/dll/reverseSelectionSort.dll",
     r"./bin/dll/selectionSort.dll",
+    r"./bin/dll/stoogeSort.dll",
     r"./bin/dll/timSort.dll",
 ]
 
@@ -74,7 +73,8 @@ ALGOS: dict[int, str] = {
     9: "Quick Sort",
     10: "Reverse Selection Sort",
     11: "Selection Sort",
-    12: "Tim Sort",
+    12: "Stooge Sort",
+    13: "Tim Sort",
 }
 
 # Fonts
