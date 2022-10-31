@@ -56,6 +56,7 @@ C_BINS: list[str] = [
     r"./bin/dll/selectionSort.dll",
     r"./bin/dll/stoogeSort.dll",
     r"./bin/dll/timSort.dll",
+    r"./bin/dll/treeSort.dll",
 ]
 
 SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
@@ -89,9 +90,13 @@ pygame.display.set_caption(f"Sorting Visualizer: {ALGOS[ALGORITHM]}")
 
 
 def randomize_heights() -> list[int]:
-    for _ in range(2*NUM):
+    for _ in range(NUM):
         i, j = random.randint(0, NUM-1), random.randint(0, NUM-1)
         SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+
+        i, j = random.randint(0, NUM-1), random.randint(0, NUM-1)
+        SAMPLES[i].height, SAMPLES[j].height = SAMPLES[j].height, SAMPLES[i].height
+
         draw_samples()
         pygame.display.update()
 
