@@ -105,6 +105,7 @@ def randomize_heights() -> list[int]:
 def reverse_samples(samples_sorted: bool) -> list[int]:
     if not samples_sorted:
         for i in range(NUM):
+            SAMPLES[i].height = WINDOW_Y - (i+1)*SLOPE
             draw_samples()
             pygame.display.update()
     else:
@@ -198,6 +199,9 @@ def main() -> None:
                 if event.key == pygame.K_r:
                     heights = reverse_samples(samples_sorted)
                     samples_sorted = False
+
+                if event.key == pygame.K_p:
+                    print(samples_sorted)
 
         draw_samples()
         pygame.display.update()
