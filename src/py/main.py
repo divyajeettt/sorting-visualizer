@@ -56,7 +56,6 @@ C_BINS: list[str] = [
     r"./bin/dll/selectionSort.dll",
     r"./bin/dll/stoogeSort.dll",
     r"./bin/dll/timSort.dll",
-    r"./bin/dll/treeSort.dll",
 ]
 
 SORTING_LIBS: list[ctypes.CDLL] = [ctypes.CDLL(file) for file in C_BINS]
