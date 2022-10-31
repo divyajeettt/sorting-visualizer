@@ -200,9 +200,6 @@ def main() -> None:
                     heights = reverse_samples(samples_sorted)
                     samples_sorted = False
 
-                if event.key == pygame.K_p:
-                    print(samples_sorted)
-
         draw_samples()
         pygame.display.update()
 
